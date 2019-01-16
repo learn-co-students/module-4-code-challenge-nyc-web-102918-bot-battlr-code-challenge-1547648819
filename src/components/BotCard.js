@@ -20,7 +20,9 @@ const BotCard = props => {
   }
 
   return (
-    <div className="ui column">
+
+    //wantint to create a condition here but ran out of time
+    <div className="ui column" onClick={() => props.handleAddBotClick(bot.id)} >
       <div
         className="ui card"
         key={bot.id}
