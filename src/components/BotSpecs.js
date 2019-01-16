@@ -59,17 +59,13 @@ const BotSpecs = props => {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
-                props.showBotSpecs(props.id)
-              }
+              onClick={() => props.showBotSpecs(props.id)}
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                props.enlistInArmy(props.id)
-              }
+              onClick={() => props.enlistInArmy(props.id)}
             >
               Enlist
             </button>
