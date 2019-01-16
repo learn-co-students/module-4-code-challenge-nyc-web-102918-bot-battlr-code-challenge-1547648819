@@ -8,7 +8,7 @@ class YourBotArmy extends React.Component {
       return this.state.botCollection.map(bot => {
         return <BotCard
           bot={bot}
-          handleClick={this.handleClick}
+          showSpecs={this.props.showSpecs}
            />
       })
     } else {

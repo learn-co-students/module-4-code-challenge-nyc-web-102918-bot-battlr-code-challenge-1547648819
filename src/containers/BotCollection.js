@@ -9,6 +9,9 @@ class BotCollection extends React.Component {
         return <BotCard
           bot={bot}
           handleClick={this.props.handleClick}
+          showSpecs={this.props.showSpecs}
+          enlist={this.props.enlist}
+          backOut={this.backOut}
            />
       })
     } else {
