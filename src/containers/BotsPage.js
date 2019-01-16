@@ -8,8 +8,18 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.props.bots.filter(bot => bot.inArmy)} selectBot={this.props.selectBot}/>
-        <BotCollection bots={this.props.bots.filter(bot => !bot.inArmy)} selectBot={this.props.selectBot} />
+        <YourBotArmy
+          bots={this.props.bots.filter(bot => bot.inArmy)}
+          enlistInArmy={this.props.enlistInArmy}
+          showBotSpecs={this.props.showBotSpecs}
+        />
+        <BotCollection
+          bots={this.props.bots.filter(bot => !bot.inArmy)}
+          showingSpecs={this.props.showingSpecs}
+          showBotSpecs={this.props.showBotSpecs}
+          selectedBot={this.props.selectedBot}
+          enlistInArmy={this.props.enlistInArmy}
+        />
       </div>
     );
   }

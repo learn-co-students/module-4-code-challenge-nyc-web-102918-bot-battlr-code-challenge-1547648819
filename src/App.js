@@ -5,7 +5,9 @@ import "./App.css";
 class App extends Component {
 
   state = {
-    bots: []
+    bots: [],
+    showingSpecs: false,
+    selectedBot: null
   }
 
   componentDidMount() {
@@ -19,7 +21,15 @@ class App extends Component {
     })
   }
 
-  selectBot = (botId) => {
+  showBotSpecs = (botId) => {
+    let foundBot = this.state.bots.find(bot => bot.id === botId)
+    this.setState({
+      showingSpecs: !this.state.showingSpecs,
+      selectedBot: foundBot
+    })
+  }
+
+  enlistInArmy = (botId) => {
     let foundBot = this.state.bots.find(bot => bot.id === botId)
     foundBot.inArmy = !foundBot.inArmy
     this.setState({
@@ -30,7 +40,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BotsPage bots={this.state.bots} selectBot={this.selectBot}/>
+        <BotsPage
+          bots={this.state.bots}
+          showingSpecs={this.state.showingSpecs}
+          showBotSpecs={this.showBotSpecs}
+          selectedBot={this.state.selectedBot}
+          enlistInArmy={this.enlistInArmy}/>
       </div>
     );
   }
