@@ -13,6 +13,7 @@ class BotsPage extends React.Component {
   componentDidMount() {
     fetch('https://bot-battler-api.herokuapp.com/api/v1/bots')
       .then(r => r.json())
+      .then(robots => robots.map(robot => Object.assign({}, robot, {clicked: false})))
       .then(robots => this.setState({ robots }))
   }
 
@@ -28,13 +29,27 @@ class BotsPage extends React.Component {
     })
   }
 
+  toggleBotSpec = (id) => {
+    console.log(id)
+    const robotsCopy = [...this.state.robots]
+    const botToChangeClick = robotsCopy.find(bot => bot.id === id)
+    botToChangeClick.clicked = true
+    this.setState({
+      robots: robotsCopy
+    })
+  }
+
+  reRenderAllBots = () => {
+    console.log('clicked')
+  }
+
   render() {
     // console.log(this.state.robots)
     // console.log(this.state.myRobots)
     return (
       <div>
         <BotCollection robots={this.state.myRobots} />
-        <BotCollection robots={this.state.robots} addBotToArmy={this.addBotToArmy} />
+        <BotCollection robots={this.state.robots} addBotToArmy={this.addBotToArmy} toggleBotSpec={this.toggleBotSpec} reRenderAllBots={this.reRenderAllBots} />
       </div>
     );
   }
