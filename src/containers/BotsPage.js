@@ -45,19 +45,45 @@ class BotsPage extends React.Component {
     })
   }
 
+  handleSort = (value) => {
+    const botsCopy = this.state.bots
+    if (value === 'health') {
+      botsCopy.sort((a, b) => {
+        return a.health - b.health
+      })
+      console.log(botsCopy)
+    } else if (value === 'damage') {
+      botsCopy.sort((a, b) => {
+        return a.damage - b.damage
+      })
+      console.log(botsCopy)
+    } else if (value === 'armor') {
+      botsCopy.sort((a, b) => {
+        return a.armor - b.armor
+      })
+      console.log(botsCopy)
+    }
+    
+
+  }
+
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.state.army} />
+        <YourBotArmy
+          bots={this.state.army}
+          showSpecs={this.showSpecs}
+        />
         {this.state.selected ?
           <BotSpecs
-            bot={this.state.bots.find(bot => bot.id == this.state.selected)}
+            bot={this.state.bots.find(bot => bot.id === this.state.selected)}
             handleEnlist={this.handleEnlist}
             goBack={this.goBack} /> :
             <BotCollection
               bots={this.state.bots}
               handleEnlist={this.handleEnlist}
               showSpecs={this.showSpecs}
+              handleSort={this.handleSort}
             />}
       </div>
     );
