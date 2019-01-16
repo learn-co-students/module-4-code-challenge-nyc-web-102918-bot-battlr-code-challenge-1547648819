@@ -8,7 +8,7 @@ class BotsPage extends React.Component {
   //start here with your code for step one
   state = {
     bots: [],
-    // filter: null
+    // filter: false
   }
 
   componentDidMount() {
@@ -72,7 +72,7 @@ class BotsPage extends React.Component {
   //   let botFilter
   //
   //   if (filter === "all") {
-  //     botFilter = null
+  //     botFilter = false
   //   } else {
   //     botFilter = filter
   //   }
@@ -85,10 +85,10 @@ class BotsPage extends React.Component {
   render() {
     // let collectedBots
     // if (this.state.filter) {
-    //   collectedBots = this.state.bots.filter(bot => !bot.active && bot.bot_class === this.state.filter)
+    //   collectedBots = this.state.bots.filter(bot => !bot.active && bot["bot_class"] === this.state.filter)
     //   debugger
     // } else {
-    //   collectedBots =
+    //   collectedBots = this.state.bots.filter(bot => !bot.active)
     // }
 
     return (
@@ -104,6 +104,7 @@ class BotsPage extends React.Component {
         />
         {/* <FilterRow filterBots={this.filterBots}/> */}
         <BotCollection
+          // bots={collectedBots}
           bots={this.state.bots.filter(bot => !bot.active)}
           recruitBot={this.recruitBot}
           showBotDetails={this.showBotDetails}
