@@ -9,7 +9,8 @@ class BotsPage extends React.Component {
   state = {
     botData:[],
     selectedBots:[],
-    currentBot:{}
+    currentBot:{},
+    filterVal:""
   }
 
   componentDidMount(){
@@ -43,23 +44,36 @@ class BotsPage extends React.Component {
 
   handleBack = ()=>{
     this.setState({
-      currentBot:{}
+      currentBot:{},
+      filterVal:""
     })
   }
 
   handleEnlist = (bot)=>{
     this.setState({
       selectedBots:[...this.state.selectedBots,bot],
-      currentBot:{}
+      currentBot:{},
+      filterVal:""
     })
+  }
+
+  handleFilter=(event)=>{
+    this.setState({
+      filterVal:event.target.value
+    })
+  }
+
+  botsToDisplay=()=>{
+    return this.state.botData.filter(bot=> bot.name.includes(this.state.filterVal))
   }
 
   render() {
     return (
       <div>
+      Search Bot Name <input onChange={(e)=>this.handleFilter(e)} value={this.state.filterVal} type="text"/>
       <YourBotArmy handleClick={this.handleClick} selectedBots={this.state.selectedBots}/>
       {this.state.currentBot.id ? <BotSpecs handleBack={this.handleBack} handleEnlist={this.handleEnlist} bot={this.state.currentBot}/> :null}
-      {this.state.currentBot.id ? null : <BotCollection handleClick={this.handleClick} botData={this.state.botData}/>}
+      {this.state.currentBot.id ? null : <BotCollection handleClick={this.handleClick} botData={this.botsToDisplay()}/>}
 
       </div>
     );
