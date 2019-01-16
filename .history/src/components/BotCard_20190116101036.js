@@ -1,9 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  // console.log(props)
   // const { bot } = props;
-  // console.log(bot)
 
   let botType;
 
@@ -26,7 +24,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={props.id}
-        onClick={() => props.showDetails(props.id)}
+        // onClick={() => }
       >
         <div className="image">
           <img alt="oh no!" src={props.avatar_url} />

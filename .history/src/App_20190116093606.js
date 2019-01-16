@@ -4,16 +4,18 @@ import "./App.css";
 
 class App extends Component {
 
-    
+  state = {
+    allBots: []
+  }
 
-      
-      render() {
-        return (
-          <div className="App">
-            <BotsPage />
-          </div>
-        );
-      }
-    }
+
+  render() {
+    return (
+      <div className="App">
+        <BotsPage />
+      </div>
+    );
+  }
+}
 
 export default App;

@@ -1,13 +1,11 @@
 import React from "react";
 
 const BotCard = props => {
-  // console.log(props)
-  // const { bot } = props;
-  // console.log(bot)
+  const { bot } = props;
 
   let botType;
 
-  switch (props.bot_class) {
+  switch (bot.bot_class) {
     case "Assault":
       botType = <i className="icon military" />;
       break;
@@ -25,34 +23,34 @@ const BotCard = props => {
     <div className="ui column">
       <div
         className="ui card"
-        key={props.id}
-        onClick={() => props.showDetails(props.id)}
+        key={bot.id}
+        // onClick={() => }
       >
         <div className="image">
-          <img alt="oh no!" src={props.avatar_url} />
+          <img alt="oh no!" src={bot.avatar_url} />
         </div>
         <div className="content">
           <div className="header">
-            {props.name} {botType}
+            {bot.name} {botType}
           </div>
 
           <div className="meta text-wrap">
-            <small>{props.catchphrase}</small>
+            <small>{bot.catchphrase}</small>
           </div>
         </div>
         <div className="extra content">
           <span>
             <i className="icon heartbeat" />
-            {props.health}
+            {bot.health}
           </span>
 
           <span>
             <i className="icon lightning" />
-            {props.damage}
+            {bot.damage}
           </span>
           <span>
             <i className="icon shield" />
-            {props.armor}
+            {bot.armor}
           </span>
         </div>
       </div>
