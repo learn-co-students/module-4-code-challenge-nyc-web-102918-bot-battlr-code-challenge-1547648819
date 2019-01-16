@@ -10,6 +10,12 @@ class BotsPage extends React.Component {
     selected: null
   }
 
+  componentDidMount() {
+    fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
+      .then(r => r.json())
+      .then(bots => this.setState({ bots }))
+  }
+
   handleClick = id => {
   	const bot = this.state.bots.find(bot => bot.id === id)
 
@@ -26,17 +32,12 @@ class BotsPage extends React.Component {
   	const bot = this.state.bots.find(bot => bot.id === this.state.selected)
 
   	bot.owned = true
+  	
   	this.setState({ bots: this.state.bots, selected: null })
   }
 
   handleGoBack = () => {
   	this.setState({ selected: null })
-  }
-
-  componentDidMount() {
-    fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
-      .then(r => r.json())
-      .then(bots => this.setState({ bots }))
   }
 
   getComponent = () => {
