@@ -2,11 +2,13 @@ import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
 import BotSpecView from "./BotSpecView"
+// import FilterRow from "../components/FilterRow"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
   state = {
-    bots: []
+    bots: [],
+    // filter: null
   }
 
   componentDidMount() {
@@ -66,7 +68,29 @@ class BotsPage extends React.Component {
 
   }
 
+  // filterBots = (filter) => {
+  //   let botFilter
+  //
+  //   if (filter === "all") {
+  //     botFilter = null
+  //   } else {
+  //     botFilter = filter
+  //   }
+  //
+  //   this.setState({
+  //     filter: botFilter
+  //   })
+  // }
+
   render() {
+    // let collectedBots
+    // if (this.state.filter) {
+    //   collectedBots = this.state.bots.filter(bot => !bot.active && bot.bot_class === this.state.filter)
+    //   debugger
+    // } else {
+    //   collectedBots =
+    // }
+
     return (
       <div>
         <YourBotArmy
@@ -78,6 +102,7 @@ class BotsPage extends React.Component {
           recruitBot={this.recruitBot}
           removeBotDetails={this.removeBotDetails}
         />
+        {/* <FilterRow filterBots={this.filterBots}/> */}
         <BotCollection
           bots={this.state.bots.filter(bot => !bot.active)}
           recruitBot={this.recruitBot}
