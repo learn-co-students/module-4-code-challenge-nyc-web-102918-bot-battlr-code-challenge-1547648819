@@ -29,14 +29,19 @@ class BotsPage extends React.Component {
   }
 
   showSpecs = (botId) => {
-    let enlisted = !!this.state.botArmy.find(bot => bot.id === botId)
+    let newRecruit = this.state.allBots.find(bot => bot.id === botId)
+    this.setState({
+      detailViewBotId: newRecruit
+    })
+  }
 
-    if (!enlisted) {
-      let newRecruit = this.state.allBots.find(bot => bot.id === botId)
-      this.setState({
-        detailViewBotId: newRecruit
-      })
-    }
+  dischargeBot = (botId) => {
+    let dischargedBot = this.state.botArmy.find(bot => bot.id === botId)
+    let botArmyCopy = [...this.state.botArmy].filter(bot => bot.id !== botId)
+    this.setState({
+      allBots: [...this.state.allBots, dischargedBot],
+      botArmy: botArmyCopy
+    })
   }
 
   enlistBot = (botId) => {
@@ -55,23 +60,14 @@ class BotsPage extends React.Component {
     })
   }
 
-  dischargeBot = (botId) => {
-    let dischargedBot = this.state.botArmy.find(bot => bot.id === botId)
-    let botArmyCopy = [...this.state.botArmy].filter(bot => bot.id !== botId)
-    this.setState({
-      allBots: [...this.state.allBots, dischargedBot],
-      botArmy: botArmyCopy
-    })
-  }
-
   render() {
     return (
       <div>
         <YourBotArmy botArmy={this.state.botArmy} handleBotCardClick={this.handleBotCardClick}/>
 
-      {this.state.detailViewBotId ? <BotSpecs bot={this.state.detailViewBotId} closeDetailView={this.closeDetailView} enlistBot={this.enlistBot}/> : <BotCollection allBots={this.state.allBots} handleBotCardClick={this.handleBotCardClick}/>}
+        {this.state.detailViewBotId ? <BotSpecs bot={this.state.detailViewBotId} closeDetailView={this.closeDetailView} enlistBot={this.enlistBot}/> : <BotCollection allBots={this.state.allBots} handleBotCardClick={this.handleBotCardClick}/>}
       </div>
-    );
+    )
   }
 
 }
