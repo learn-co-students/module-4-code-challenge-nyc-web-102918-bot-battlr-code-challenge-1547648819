@@ -25,6 +25,7 @@ const BotCard = props => {
         className="ui card"
         key={bot.id}
         onClick={() => props.handleClick(bot.id)}
+        //^ showSpecs function not used since it didn't render botSpecs properly :(
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />

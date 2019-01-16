@@ -6,7 +6,8 @@ class BotsPage extends React.Component {
 
   state = {
     botData:[],
-    clickedBotArray:[]
+    clickedBotArray:[],
+    showBot:[]
   }
 
   componentDidMount() {
@@ -20,16 +21,17 @@ class BotsPage extends React.Component {
   }
 
   handleClick = (id) => {
-    console.log('clicked')
-    console.log(id)
+    // console.log('clicked')
+    // console.log(id)
     let clickedBot = this.state.botData.find(robot => id === robot.id)
-    console.log(clickedBot)
+    // console.log(clickedBot)
     if (!this.state.clickedBotArray.includes(clickedBot)){
     let copyArray=[...this.state.clickedBotArray, clickedBot]
     this.setState({
       clickedBotArray:copyArray
     })
   }}
+  //^ adds clicked bot to army
 
   removeFromArmy = (id) => {
     console.log("remove")
@@ -40,6 +42,21 @@ class BotsPage extends React.Component {
       clickedBotArray:removeFromArray
     })
   }
+//^removes clicked bot from army
+
+showSpecs = (id) => {
+  console.log(id)
+  console.log("clicked")
+  let clickedBot = this.state.botData.find(robot=> id === robot.id)
+  if (!this.state.showBot.includes(clickedBot)){
+  let showBotArray =[...this.state.showBot,clickedBot]
+  this.setState({
+    showBot:showBotArray
+  })
+  }
+}
+//^ attempt to make clicked bot show details
+
 
   render() {
     return (
@@ -49,8 +66,9 @@ class BotsPage extends React.Component {
       removeFromArmy={this.removeFromArmy}
       />
       <BotCollection
-      botData={this.state.botData}
+      botData={this.state.showBot.length > 0 ? this.state.showBot : this.state.botData}
       handleClick={this.handleClick}
+      showSpecs={this.showSpecs}
       />
       </div>
     );
