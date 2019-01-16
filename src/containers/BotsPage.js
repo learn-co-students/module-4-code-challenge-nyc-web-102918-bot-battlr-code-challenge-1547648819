@@ -1,6 +1,7 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecView from "./BotSpecView"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
@@ -13,7 +14,7 @@ class BotsPage extends React.Component {
     .then(r => r.json())
     .then(data => {
       const cleanedBots = data.map(bot => {
-        return {...bot, active: false}
+        return {...bot, active: false, details: false}
       })
       this.setState({
         bots: cleanedBots
@@ -22,7 +23,6 @@ class BotsPage extends React.Component {
   }
 
   recruitBot = (botId) => {
-    console.log("recruit:", botId)
     const updatedBots = this.state.bots.map(bot => {
       if (bot.id === botId) {
         bot.active = !bot.active
@@ -34,7 +34,36 @@ class BotsPage extends React.Component {
 
     this.setState({
       bots: updatedBots
+    }, this.removeBotDetails())
+  }
+
+  showBotDetails = (botId) => {
+    const updatedBots = this.state.bots.map(bot => {
+      if (bot.id === botId) {
+        bot.details = true
+        return bot
+      } else {
+        bot.details = false
+        return bot
+      }
     })
+
+    this.setState({
+      bots: updatedBots
+    })
+
+  }
+
+  removeBotDetails = () => {
+    const updatedBots = this.state.bots.map(bot => {
+      bot.details = false
+      return bot
+    })
+
+    this.setState({
+      bots: updatedBots
+    })
+
   }
 
   render() {
@@ -44,9 +73,15 @@ class BotsPage extends React.Component {
           bots={this.state.bots.filter(bot => bot.active)}
           recruitBot={this.recruitBot}
         />
+        <BotSpecView
+          bots={this.state.bots.filter(bot => bot.details)}
+          recruitBot={this.recruitBot}
+          removeBotDetails={this.removeBotDetails}
+        />
         <BotCollection
           bots={this.state.bots.filter(bot => !bot.active)}
           recruitBot={this.recruitBot}
+          showBotDetails={this.showBotDetails}
         />
       </div>
     );

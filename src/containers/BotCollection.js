@@ -1,5 +1,6 @@
 import React from "react";
 import BotCard from "../components/BotCard";
+//import BotSpecs from "../components/BotSpecs"
 
 class BotCollection extends React.Component {
   //your code here
@@ -12,7 +13,7 @@ class BotCollection extends React.Component {
             return <BotCard
                      key={bot.id}
                      bot={bot}
-                     recruitBot={this.props.recruitBot}
+                     showBotDetails={this.props.showBotDetails}
                    />
           })}
     		</div>

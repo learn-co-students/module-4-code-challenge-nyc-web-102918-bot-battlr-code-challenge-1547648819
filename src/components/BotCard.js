@@ -20,7 +20,11 @@ const BotCard = props => {
   }
 
   const handleClick = () => {
-    props.recruitBot(props.bot.id)
+    if (props.bot.active) {
+      props.recruitBot(props.bot.id)
+    } else {
+      props.showBotDetails(props.bot.id)
+    }
   }
 
   return (
