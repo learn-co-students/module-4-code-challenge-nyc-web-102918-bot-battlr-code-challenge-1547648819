@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import BotsPage from "./containers/BotsPage";
 import "./App.css";
 
+
+// aqui llamo a BostPage porque es el siguiente nivel en mi diagrama(por eso estaba aqui)
 class App extends Component {
   render() {
     return (
