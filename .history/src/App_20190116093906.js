@@ -15,16 +15,16 @@ class App extends Component {
               console.table(response)
               return response.json()
           })
-          .then(botsData => this.setState({
-              allBots:botsData
-          }))
+          .then(botsData => this.setState{
+            allBots:botsData
+          })
       }
 
       
       render() {
         return (
           <div className="App">
-            <BotsPage allBots={this.state.allBots} />
+            <BotsPage />
           </div>
         );
       }

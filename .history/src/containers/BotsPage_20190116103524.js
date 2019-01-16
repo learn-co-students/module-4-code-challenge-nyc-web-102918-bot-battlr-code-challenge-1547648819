@@ -5,7 +5,7 @@ import YourBotArmy from './YourBotArmy'
 class BotsPage extends React.Component {
   //start here with your code for step one
       state = {
-        active: false,
+        active: null,
         allBots: []
       }
 
@@ -22,7 +22,6 @@ class BotsPage extends React.Component {
       }
 
       showDetails = (botId) => {
-        console.log("firing")
         this.setState({
           active: botId
         })
@@ -34,7 +33,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy allBots={this.state.allBots} />
-        <BotCollection allBots={this.state.allBots} showDetails={this.showDetails}/>
+        <BotCollection allBots={this.state.allBots} showDetails={this.showDewtails}/>
       </div>
     );
   }

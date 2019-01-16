@@ -21,7 +21,7 @@ class BotsPage extends React.Component {
           }))
       }
 
-      showDetails = (botId) => {
+      showDetails = () => {
         console.log("firing")
         this.setState({
           active: botId

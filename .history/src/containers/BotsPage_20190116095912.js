@@ -5,7 +5,6 @@ import YourBotArmy from './YourBotArmy'
 class BotsPage extends React.Component {
   //start here with your code for step one
       state = {
-        active: false,
         allBots: []
       }
 
@@ -21,20 +20,13 @@ class BotsPage extends React.Component {
           }))
       }
 
-      showDetails = (botId) => {
-        console.log("firing")
-        this.setState({
-          active: botId
-        })
-      }
-      currentBot = () => {this.state.allBots.find(bot => bot.id === this.state.active)}
-  
-  
-      render() {
+
+
+  render() {
     return (
       <div>
+        <BotCollection {this.state.allBots.map(bot => key={bot.id}{...bot})} />
         <YourBotArmy allBots={this.state.allBots} />
-        <BotCollection allBots={this.state.allBots} showDetails={this.showDetails}/>
       </div>
     );
   }

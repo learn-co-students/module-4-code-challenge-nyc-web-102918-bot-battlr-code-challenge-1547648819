@@ -24,7 +24,7 @@ class App extends Component {
       render() {
         return (
           <div className="App">
-            <BotsPage allBots={this.state.allBots} />
+            <BotsPage />
           </div>
         );
       }
